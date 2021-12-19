@@ -7,15 +7,12 @@
 // </summary>
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
-
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 namespace Com.MyCompany.MyGame
 {
 #pragma warning disable 649
-
     /// <summary>
     /// Player manager.
     /// Handles fire Input and Beams.
@@ -23,32 +20,21 @@ namespace Com.MyCompany.MyGame
     public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         #region Public Fields
-
         [Tooltip("The current Health of our player")]
         public float Health = 1f;
-
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-
         #endregion
-
         #region Private Fields
-
         [Tooltip("The Player's UI GameObject Prefab")] [SerializeField]
         private GameObject playerUiPrefab;
-
         [Tooltip("The Beams GameObject to control")] [SerializeField]
         private GameObject beams;
-
         [SerializeField] string triggeringTag;
-
         //True, when the user is firing
         bool IsFiring;
-
         #endregion
-
         #region MonoBehaviour CallBacks
-
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
         /// </summary>
@@ -62,19 +48,16 @@ namespace Com.MyCompany.MyGame
             {
                 this.beams.SetActive(false);
             }
-
             // #Important
             // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = gameObject;
             }
-
             // #Critical
             // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
             DontDestroyOnLoad(gameObject);
         }
-
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during initialization phase.
         /// </summary>
@@ -91,8 +74,6 @@ namespace Com.MyCompany.MyGame
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
         }
-
-
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity on every frame.
         /// Process Inputs if local player.
@@ -111,13 +92,11 @@ namespace Com.MyCompany.MyGame
                     GameManager.Instance.LeaveRoom();
                 }
             }
-
             if (this.beams != null && this.IsFiring != this.beams.activeInHierarchy)
             {
                 this.beams.SetActive(this.IsFiring);
             }
         }
-
         /// <summary>
         /// MonoBehaviour method called when the Collider 'other' enters the trigger.
         /// Affect Health of the Player if the collider is a beam
@@ -131,7 +110,6 @@ namespace Com.MyCompany.MyGame
                 this.Health -= 0.1f;
             }
         }
-
         /// <summary>
         /// MonoBehaviour method called once per frame for every Collider 'other' that is touching the trigger.
         /// We're going to affect health while the beams are interesting the player
@@ -145,11 +123,8 @@ namespace Com.MyCompany.MyGame
                 this.Health -= 0.1f * Time.deltaTime;
             }
         }
-
         #endregion
-
         #region Private Methods
-
         /// <summary>
         /// Processes the inputs. This MUST ONLY BE USED when the player has authority over this Networked GameObject (photonView.isMine == true)
         /// </summary>
@@ -162,7 +137,6 @@ namespace Com.MyCompany.MyGame
                     this.IsFiring = true;
                 }
             }
-
             if (Input.GetButtonUp("Fire1"))
             {
                 if (this.IsFiring)
@@ -171,11 +145,8 @@ namespace Com.MyCompany.MyGame
                 }
             }
         }
-
         #endregion
-
         #region IPunObservable implementation
-
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -195,3 +166,13 @@ namespace Com.MyCompany.MyGame
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+
