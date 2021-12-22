@@ -8,7 +8,7 @@ Use Mouse to turn the camera, W,AS,D to move the player and Mouse Left Button/Le
 
 Was made as one a weekly task in a unity game development course.
 
-By VictoKu1 .
+By VictoKuGame .
 
 
 #### Scripts :
