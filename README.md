@@ -12,8 +12,8 @@ By VictoKuGame .
 
 
 #### Scripts :
-##### [Animator Manage Script.](https://github.com/VictoKuGame/Online-Multiplayer-Simulation/blob/main/Assets/scripts/Player/AnimatorManager.cs)
-##### [Player Mover Script.](https://github.com/VictoKuGame/Online-Multiplayer-Simulation/blob/main/Assets/scripts/Player/PlayerMover.cs)
+##### [ Animator Manage Script.](https://github.com/VictoKuGame/Online-Multiplayer-Simulation/blob/main/Assets/scripts/Player/AnimatorManager.cs)
+##### [ Player Mover Script.](https://github.com/VictoKuGame/Online-Multiplayer-Simulation/blob/main/Assets/scripts/Player/PlayerMover.cs)
 
 
 
